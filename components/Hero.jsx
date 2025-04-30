@@ -35,11 +35,11 @@ const Hero = () => {
             </h1>
             <TypingText />
             <LogosContainer className="logos-container">
-              <a href="https://github.com/mdmathewdc" target={"_blank"}>
+              <a href="https://github.com/Dhavalgj2" target={"_blank"}>
                 <img src="/social-logos/github-original.svg" />
               </a>
               <a
-                href="https://www.linkedin.com/in/mathew-dony"
+                href="https://www.linkedin.com/in/dhavalkumar-patel-b35584142/"
                 target={"_blank"}
               >
                 <img src="/social-logos/linkedin-plain.svg" />
