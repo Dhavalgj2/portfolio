@@ -66,7 +66,7 @@ const Resume = () => {
 };
 
 const ResumeContainer = styled.div`
-  min-height: 95vh;
+  min-height: 100vh;
   scroll-margin-top: 1rem;
 
   .scroll-down a span {

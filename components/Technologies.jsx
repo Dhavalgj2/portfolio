@@ -5,24 +5,23 @@ import { languages } from "./constants/ProgrammingLanguages";
 import LanguageTile from "./LanguageTile";
 import Fade from "react-reveal/Fade";
 
-
 const Technologies = () => {
-  return(
+  return (
     <Fade left>
       <TechnologyContainer id="techStack">
-      <SectionHeader>
+        <SectionHeader>
           <h2>My Tech Stack</h2>
           <span></span>
-      </SectionHeader>
+        </SectionHeader>
         <LanguageTilesContainer>
-        {languages.map((language,index) => (
-          <LanguageTile name={language} key={index} /> 
-        ))}
+          {languages.map((language, index) => (
+            <LanguageTile name={language} key={index} />
+          ))}
         </LanguageTilesContainer>
       </TechnologyContainer>
     </Fade>
-  )
-}
+  );
+};
 
 // const Technologies = () => {
 //   return (
@@ -44,7 +43,7 @@ const Technologies = () => {
 
 const TechnologyContainer = styled.div`
   min-height: max-content;
-  
+
   @media (min-width: 1024px) {
     margin-bottom: 5rem;
   }
