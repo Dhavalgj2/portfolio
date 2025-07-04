@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { TypingText } from ".";
 import Loader from "./Loader";
-import Fade from "react-reveal/Fade";
-
+import { motion } from "motion/react";
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,11 +22,11 @@ const Hero = () => {
   return (
     <HeroContainer>
       {isLoading ? (
-        <Fade when={isLoading}>
+        <motion.div when={isLoading}>
           <Loader />
-        </Fade>
+        </motion.div>
       ) : (
-        <Fade big duration={2000} ssrReveal>
+        <motion.div big duration={2000} ssrReveal>
           <section>
             <h1 className="hi">Hi,</h1>
             <h1 className="name-block">
@@ -52,7 +51,7 @@ const Hero = () => {
               <span></span>
             </a>
           </div>
-        </Fade>
+        </motion.div>
       )}
     </HeroContainer>
   );

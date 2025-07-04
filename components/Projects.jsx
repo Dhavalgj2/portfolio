@@ -2,11 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { SectionHeader } from "./CommonStyles";
 import ProjectTile from "./ProjectTile";
-import Fade from "react-reveal/Fade";
-
+import { motion } from "motion/react";
 const Projects = () => {
   return (
-    <Fade big duration={1500} ssrReveal>
+    <motion.div big duration={1500} ssrReveal>
       <ProjectContainer>
         <SectionHeader>
           <h2>Some Things I've Built</h2>
@@ -14,7 +13,7 @@ const Projects = () => {
         </SectionHeader>
         <ProjectTile />
       </ProjectContainer>
-    </Fade>
+    </motion.div>
   );
 };
 

@@ -1,62 +1,61 @@
 import React from "react";
 import styled from "styled-components";
-import { SectionHeader } from "./CommonStyles";
 import { languages } from "./constants/ProgrammingLanguages";
 import LanguageTile from "./LanguageTile";
-import Fade from "react-reveal/Fade";
+import { motion } from "framer-motion";
+import { SectionHeader } from "./CommonStyles";
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const tileVariants = {
+  hidden: { opacity: 0, x: -50 },
+  show: { opacity: 1, x: 0 },
+};
 
 const Technologies = () => {
   return (
-    <Fade left>
-      <TechnologyContainer id="techStack">
-        <SectionHeader>
-          <h2>My Tech Stack</h2>
-          <span></span>
-        </SectionHeader>
-        <LanguageTilesContainer>
-          {languages.map((language, index) => (
-            <LanguageTile name={language} key={index} />
-          ))}
-        </LanguageTilesContainer>
-      </TechnologyContainer>
-    </Fade>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <SectionHeader>
+        <h2>My Tech Stack</h2>
+        <span></span>
+      </SectionHeader>
+
+      <TilesContainer>
+        {languages.map((lang, index) => (
+          <motion.div
+            key={index}
+            variants={tileVariants}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <LanguageTile name={lang} />
+          </motion.div>
+        ))}
+      </TilesContainer>
+    </motion.div>
   );
 };
 
-// const Technologies = () => {
-//   return (
-//     <Fade big duration={1500} ssrReveal>
-//       <TechnologyContainer>
-//         <SectionHeader>
-//           <h2>My Tech Stack</h2>
-//           <span></span>
-//         </SectionHeader>
-//         <LanguageTilesContainer>
-//           {languages.map((language, index) => (
-//             <LanguageTile name={language} key={index} />
-//           ))}
-//         </LanguageTilesContainer>
-//       </TechnologyContainer>
-//     </Fade>
-//   );
-// };
-
-const TechnologyContainer = styled.div`
+const TilesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
   min-height: max-content;
 
   @media (min-width: 1024px) {
     margin-bottom: 5rem;
-  }
-`;
-
-const LanguageTilesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
-  gap: 2rem;
-  row-gap: 2rem;
-
-  @media (min-width: 768px) {
-    row-gap: 3rem;
   }
 `;
 

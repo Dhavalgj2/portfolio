@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SectionHeader } from "./CommonStyles";
 import { JobTab } from ".";
-import Fade from "react-reveal/Fade";
-import { HYGRAPH_PERMANENTAUTH_TOKEN, HYGRAPH_URL } from "./constants/Hygraph";
 import { jobData } from "./JobData";
-
+import { motion } from "motion/react";
 const Resume = () => {
   const handleScroll = () => {
     const resumeSection = document.querySelector("#techStack");
@@ -46,7 +43,7 @@ const Resume = () => {
   // }, []);
   return (
     <>
-      <Fade left big duration={1500} ssrReveal>
+      <motion.div left big duration={1500} ssrReveal>
         <ResumeContainer id="resume-section">
           <SectionHeader>
             <h2>Where I've Worked</h2>
@@ -60,7 +57,7 @@ const Resume = () => {
             </a>
           </div>
         </ResumeContainer>
-      </Fade>
+      </motion.div>
     </>
   );
 };

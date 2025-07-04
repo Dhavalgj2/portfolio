@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 import { SectionHeader } from "./CommonStyles";
-import Fade from "react-reveal/Fade";
 
 const Contact = () => {
   return (
