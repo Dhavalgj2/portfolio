@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { SectionHeader } from "./CommonStyles";
 import { JobTab } from ".";
 import { jobData } from "./JobData";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+
 const Resume = () => {
   const handleScroll = () => {
     const resumeSection = document.querySelector("#techStack");
@@ -11,54 +12,27 @@ const Resume = () => {
       block: "start",
     });
   };
-  //const [jobData, setJobData] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchJobData = async () => {
-  //     const headers = {
-  //       "content-type": "application/json",
-  //       Authorization: `Bearer ${HYGRAPH_PERMANENTAUTH_TOKEN}`,
-  //     };
-  //     const requestBody = {
-  //       query: `{
-  //         jobs {
-  //           name
-  //           role
-  //           time
-  //           url
-  //           description
-  //         }
-  //       }`,
-  //     };
-  //     const options = {
-  //       method: "POST",
-  //       headers,
-  //       body: JSON.stringify(requestBody),
-  //     };
-  //     const response = await (await fetch(HYGRAPH_URL, options)).json();
-  //     setJobData(response?.data?.jobs);
-  //   };
-
-  //   fetchJobData();
-  // }, []);
   return (
-    <>
-      <motion.div left big duration={1500} ssrReveal>
-        <ResumeContainer id="resume-section">
-          <SectionHeader>
-            <h2>Where I've Worked</h2>
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1.5 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <ResumeContainer id="resume-section">
+        <SectionHeader>
+          <h2>Where I&apos;ve Worked</h2>
+          <span></span>
+        </SectionHeader>
+        <JobTab data={jobData} />
+        <div className="scroll-down">
+          <a onClick={handleScroll} aria-label="Scroll to tech stack">
             <span></span>
-          </SectionHeader>
-          {<JobTab data={jobData} />}
-          <div className="scroll-down">
-            {/* Add an Href here to scroll to next section */}
-            <a onClick={handleScroll}>
-              <span></span>
-            </a>
-          </div>
-        </ResumeContainer>
-      </motion.div>
-    </>
+          </a>
+        </div>
+      </ResumeContainer>
+    </motion.div>
   );
 };
 
@@ -75,13 +49,25 @@ const ResumeContainer = styled.div`
     margin-left: -12px;
     border-left: 2.5px solid;
     border-bottom: 2.5px solid;
-    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    -webkit-animation: scrolldown 2.75s infinite;
     animation: scrolldown 2.75s infinite;
     box-sizing: border-box;
     border-image: linear-gradient(140deg, #f8081d 0%, #4795c1 100%);
     border-image-slice: 1;
+  }
+
+  @keyframes scrolldown {
+    0% {
+      transform: rotate(-45deg) translate(0, 0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(-45deg) translate(-20px, 20px);
+      opacity: 0;
+    }
   }
 `;
 

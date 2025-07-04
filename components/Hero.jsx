@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { TypingText } from ".";
 import Loader from "./Loader";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
     setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -22,31 +23,53 @@ const Hero = () => {
   return (
     <HeroContainer>
       {isLoading ? (
-        <motion.div when={isLoading}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <Loader />
         </motion.div>
       ) : (
-        <motion.div big duration={2000} ssrReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2 }}
+        >
           <section>
             <h1 className="hi">Hi,</h1>
             <h1 className="name-block">
-              I'm <span className="my-name">Dhaval</span>
+              I&apos;m <span className="my-name">Dhaval</span>
             </h1>
             <TypingText />
-            <LogosContainer className="logos-container">
-              <a href="https://github.com/Dhavalgj2" target={"_blank"}>
-                <img src="/social-logos/github-original.svg" />
+            <LogosContainer>
+              <a
+                href="https://github.com/Dhavalgj2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/social-logos/github-original.svg"
+                  alt="GitHub"
+                  width={24}
+                  height={24}
+                />
               </a>
               <a
                 href="https://www.linkedin.com/in/dhavalkumar-patel-b35584142/"
-                target={"_blank"}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <img src="/social-logos/linkedin-plain.svg" />
+                <Image
+                  src="/social-logos/linkedin-plain.svg"
+                  alt="LinkedIn"
+                  width={24}
+                  height={24}
+                />
               </a>
             </LogosContainer>
           </section>
           <div className="scroll-down">
-            {/* Add an Href here to scroll to next section */}
             <a onClick={handleScroll}>
               <span></span>
             </a>
@@ -57,6 +80,7 @@ const Hero = () => {
   );
 };
 
+// Styled components remain unchanged
 const HeroContainer = styled.div`
   min-height: 100vh;
   color: #fff;
@@ -71,11 +95,8 @@ const HeroContainer = styled.div`
     margin-left: -12px;
     border-left: 2.5px solid;
     border-bottom: 2.5px solid;
-    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    -webkit-animation: scrolldown 2.75s infinite;
     animation: scrolldown 2.75s infinite;
-    box-sizing: border-box;
     border-image: linear-gradient(140deg, #f8081d 0%, #4795c1 100%);
     border-image-slice: 1;
   }
@@ -84,19 +105,6 @@ const HeroContainer = styled.div`
     cursor: pointer;
   }
 
-  @-webkit-keyframes scrolldown {
-    0% {
-      -webkit-transform: rotate(-45deg) translate(0, 0);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: rotate(-45deg) translate(-20px, 20px);
-      opacity: 0;
-    }
-  }
   @keyframes scrolldown {
     0% {
       transform: rotate(-45deg) translate(0, 0);

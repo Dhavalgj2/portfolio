@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SectionHeader } from "./CommonStyles";
+import Image from "next/image";
 
 const Contact = () => {
   return (
@@ -9,14 +10,46 @@ const Contact = () => {
         <span></span>
       </SectionHeader>
       <div>
-        <p>I'm always ready to communicate. You can reach me through</p>
+        <p>I&apos;m always ready to communicate. You can reach me through</p>
       </div>
       <LogosContainer>
-        <a href="mailto:dhavalce48@gmail.com" target={"_blank"}>
-          <img src="/social-logos/mail.svg" className="mail" />
+        <a
+          href="mailto:dhavalce48@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/social-logos/mail.svg"
+            alt="Email"
+            className="mail"
+            width={24}
+            height={24}
+          />
         </a>
-        <img src="/social-logos/linkedin-plain.svg" />
-        <img src="/social-logos/github-original.svg" />
+        <a
+          href="https://www.linkedin.com/in/dhavalkumar-patel-b35584142/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/social-logos/linkedin-plain.svg"
+            alt="LinkedIn"
+            width={24}
+            height={24}
+          />
+        </a>
+        <a
+          href="https://github.com/Dhavalgj2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/social-logos/github-original.svg"
+            alt="GitHub"
+            width={24}
+            height={24}
+          />
+        </a>
       </LogosContainer>
     </ContactContainer>
   );
@@ -26,6 +59,7 @@ const ContactContainer = styled.div`
   h2 {
     text-align: center;
   }
+
   p {
     font-weight: 300;
     text-align: center;

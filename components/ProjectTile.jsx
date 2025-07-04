@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
 import { projectData } from "./constants/ProjectData";
 import styled from "styled-components";
+import Image from "next/image";
 
 const ProjectTile = () => {
   const [width, setWidth] = useState(0);
@@ -12,11 +12,8 @@ const ProjectTile = () => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth + 16);
   }, []);
 
-  const languageBox = (data) => {
-    return data.map((item, index) => {
-      return <LanguageBox key={index}>{item}</LanguageBox>;
-    });
-  };
+  const languageBox = (data) =>
+    data.map((item, index) => <LanguageBox key={index}>{item}</LanguageBox>);
 
   return (
     <TileContainer>
@@ -30,32 +27,46 @@ const ProjectTile = () => {
           dragConstraints={{ right: 0, left: -width }}
           className="inner-carousel"
         >
-          {projectData.map((project, index) => {
-            return (
-              <motion.div className="tile-item" key={index}>
-                <div className="tile-info">
-                  <p>{project.name}</p>
-                  <p>{project.description}</p>
-                  {languageBox(project.technologies)}
-                  <div className="logos">
-                    {project.github && (
-                      <a href={project.github} target={"_blank"}>
-                        <img src="/social-logos/github-original.svg" />
-                      </a>
-                    )}
-                    {project.url && (
-                      <a href={project.url} target={"_blank"}>
-                        <img
-                          className="external-link"
-                          src="/social-logos/external-link.svg"
-                        />
-                      </a>
-                    )}
-                  </div>
+          {projectData.map((project, index) => (
+            <motion.div className="tile-item" key={index}>
+              <div className="tile-info">
+                <p>{project.name}</p>
+                <p>{project.description}</p>
+                {languageBox(project.technologies)}
+                <div className="logos">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src="/social-logos/github-original.svg"
+                        alt="GitHub Link"
+                        width={20}
+                        height={20}
+                      />
+                    </a>
+                  )}
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        className="external-link"
+                        src="/social-logos/external-link.svg"
+                        alt="External Site"
+                        width={20}
+                        height={20}
+                      />
+                    </a>
+                  )}
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </motion.div>
     </TileContainer>
@@ -63,8 +74,8 @@ const ProjectTile = () => {
 };
 
 const TileContainer = styled.div`
-    margin-left: -5vw;
-    margin-right: -5vw;
+  margin-left: -5vw;
+  margin-right: -5vw;
 
   .tile-item {
     position: relative;
@@ -85,30 +96,17 @@ const TileContainer = styled.div`
     gap: 1rem;
     margin: 1.5rem 0;
     align-items: baseline;
-  
+
     img {
-      height: 1.2rem;
       transition: transform 0.2s ease-in-out;
-  
       &:hover {
         transform: scale(1.15);
       }
     }
-    .external-link {
-        height: 1.3rem;
-    }
-  }
 
-  .tile-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 2rem;
-    filter: brightness(0.4);
-    transform: scale(1.05);
-    object-fit: cover;
+    .external-link {
+      height: 1.3rem;
+    }
   }
 
   .tile-info {
@@ -119,8 +117,7 @@ const TileContainer = styled.div`
     padding: 10rem 15px 0 15px;
     width: 100%;
     left: 0;
-    background: linear-gradient(0deg,#000,transparent);
-}
+    background: linear-gradient(0deg, #000, transparent);
   }
 
   p {
@@ -129,7 +126,6 @@ const TileContainer = styled.div`
     font-weight: 400;
     height: 0.4rem;
   }
-  
 
   .inner-carousel {
     display: flex;
@@ -144,8 +140,9 @@ const TileContainer = styled.div`
     .tile-item {
       min-width: 12rem;
       height: 44vh;
-      max-height: 340px
+      max-height: 340px;
     }
+
     margin-left: 0vw;
     margin-right: 0vw;
   }
